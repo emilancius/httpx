@@ -3,7 +3,7 @@ package org.emgen.http.request;
 /**
  * @since 1.0.0
  */
-public class ProxySettings {
+public final class ProxySettings {
 
     private final String target;
     private final int port;

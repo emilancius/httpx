@@ -1,14 +1,14 @@
 package org.emgen.http.request;
 
-import org.emgen.extensions.StringExtensions;
 import org.emgen.http.exceptions.RequestCreationException;
+import org.emgen.extensions.StringExtensions;
 
 import java.util.*;
 
 /**
  * @since 1.0.0
  */
-public class Request {
+public final class Request {
 
     private final String target;
     private final RequestAction action;

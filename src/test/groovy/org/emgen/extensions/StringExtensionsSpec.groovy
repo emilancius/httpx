@@ -48,4 +48,31 @@ class StringExtensionsSpec extends Specification {
         expect:
         !StringExtensions.isEmpty("string to test")
     }
+
+    void "Given no 'string' parameter, function bytesCount() returns 0"() {
+        expect:
+        StringExtensions.bytesCount(null) == 0
+        StringExtensions.bytesCount(null, "UTF-8") == 0
+    }
+
+    void "Given empty 'string' parameter, function bytesCount() returns 0"() {
+        expect:
+        StringExtensions.bytesCount("") == 0
+        StringExtensions.bytesCount("", "UTF-8") == 0
+    }
+
+    void "Given non - empty 'string' parameter, function bytesCount() returns it's byte count"() {
+        expect:
+        StringExtensions.bytesCount("string") > 0
+        StringExtensions.bytesCount("string", "UTF-8") > 0
+        StringExtensions.bytesCount("string", "UTF-16") > 0
+    }
+
+    void "Given non - empty 'string' parameter & unsupported character encoding, function bytesCount() throws RuntimeException"() {
+        when:
+        StringExtensions.bytesCount("string", "unsupported character encoding")
+
+        then:
+        thrown(RuntimeException)
+    }
 }
