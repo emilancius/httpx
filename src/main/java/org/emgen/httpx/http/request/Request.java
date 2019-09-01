@@ -1,11 +1,14 @@
 package org.emgen.httpx.http.request;
 
+import org.emgen.httpx.extensions.ListExtensions;
 import org.emgen.httpx.extensions.StringExtensions;
 import org.emgen.httpx.http.ExecutorService;
 import org.emgen.httpx.http.exceptions.RequestCreationException;
 import org.emgen.httpx.http.response.Response;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @since 1.0.0
@@ -199,7 +202,7 @@ public final class Request {
             List<String> values = map.get(key);
 
             if (values == null) {
-                map.put(key, new ArrayList<>(Collections.singletonList(value)));
+                map.put(key, ListExtensions.create(value));
             } else {
                 values.add(value);
             }
