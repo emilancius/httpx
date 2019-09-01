@@ -27,7 +27,6 @@ public final class URLEncodingExtensions {
         try {
             return URLEncoder.encode(string, StringExtensions.isEmpty(charset) ? DEFAULT_CHARSET : charset);
         } catch (Exception e) {
-            e.printStackTrace();
             return string;
         }
     }
@@ -54,7 +53,6 @@ public final class URLEncodingExtensions {
         try {
             return URLDecoder.decode(string, StringExtensions.isEmpty(charset) ? DEFAULT_CHARSET : charset);
         } catch (Exception e) {
-            e.printStackTrace();
             return string;
         }
     }
