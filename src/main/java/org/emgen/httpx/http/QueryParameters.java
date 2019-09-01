@@ -58,7 +58,7 @@ public final class QueryParameters {
         Map<String, List<String>> parameters = new HashMap<>();
 
         for (String parameter : extractQueryString(string).substring(1).split(QUERY_PARAMETERS_DELIMITER)) {
-            int index = parameter.indexOf("=");
+            int index = parameter.indexOf('=');
             String key = index > 0 ? URLEncodingExtensions.decode(parameter.substring(0, index)) : null;
 
             if (key == null) {

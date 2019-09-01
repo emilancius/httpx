@@ -29,7 +29,7 @@ public final class RequestOptions {
                 '}';
     }
 
-    public final static class Creator {
+    public static final class Creator {
 
         private int timeout = 5000;
         private ProxySettings proxySettings;

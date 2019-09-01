@@ -31,7 +31,6 @@ public final class ExecutorService implements Executor {
      */
     @Override
     public Response execute(Request request) {
-        long starts = System.nanoTime();
         HttpURLConnection connection = createConnection(request);
 
         try {
@@ -40,11 +39,8 @@ public final class ExecutorService implements Executor {
             throw new RuntimeException(e);
         }
 
-        System.out.println("Request created in: " + TimeUnit.MILLISECONDS.convert(System.nanoTime() - starts, TimeUnit.NANOSECONDS) + " ms");
-        System.out.println("Executing " + request.action().name() + " request to " + connection.getURL().toString());
-
         // execute & create response
-        starts = System.nanoTime();
+        long starts = System.nanoTime();
         int code;
         String message;
         String body;
