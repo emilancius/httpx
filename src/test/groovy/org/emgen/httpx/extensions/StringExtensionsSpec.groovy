@@ -1,4 +1,4 @@
-package org.emgen.extensions
+package org.emgen.httpx.extensions
 
 import spock.lang.Specification
 

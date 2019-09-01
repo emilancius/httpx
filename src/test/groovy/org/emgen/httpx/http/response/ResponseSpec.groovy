@@ -1,4 +1,4 @@
-package org.emgen.http.response
+package org.emgen.httpx.http.response
 
 import spock.lang.Specification
 

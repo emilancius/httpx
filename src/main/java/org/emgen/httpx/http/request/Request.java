@@ -1,7 +1,9 @@
-package org.emgen.http.request;
+package org.emgen.httpx.http.request;
 
-import org.emgen.http.exceptions.RequestCreationException;
-import org.emgen.extensions.StringExtensions;
+import org.emgen.httpx.extensions.StringExtensions;
+import org.emgen.httpx.http.ExecutorService;
+import org.emgen.httpx.http.exceptions.RequestCreationException;
+import org.emgen.httpx.http.response.Response;
 
 import java.util.*;
 
@@ -18,12 +20,12 @@ public final class Request {
     private final RequestOptions options;
 
     private Request(
-        final String target,
-        final RequestAction action,
-        final String body,
-        final Map<String, List<String>> parameters,
-        final Map<String, List<String>> headers,
-        final RequestOptions options
+            final String target,
+            final RequestAction action,
+            final String body,
+            final Map<String, List<String>> parameters,
+            final Map<String, List<String>> headers,
+            final RequestOptions options
     ) {
         this.target = target;
         this.action = action;
@@ -59,14 +61,6 @@ public final class Request {
 
     /**
      * Checks does request sends body during it's execution.
-     * <p>
-     * Use cases:
-     * - Given request, that's {@link Request#body} == null, returns FALSE;
-     * - Given request, that's {@link Request#body} == "", returns FALSE;
-     * - Given request, that's {@link Request#body} == " ", returns FALSE;
-     * - Given request, that's  {@link Request#action} does not support request body, returns FALSE;
-     * - Given request, that has non - empty {@link Request#body} & {@link Request#action},
-     * that supports request body, returns TRUE.
      *
      * @return true in case request contains body and request's {@code RequestAction} supports request body.
      */
@@ -74,16 +68,25 @@ public final class Request {
         return !StringExtensions.isEmpty(body) && action.supportsRequestBody();
     }
 
+    /**
+     * Executes request.
+     *
+     * @return execution {@link Response}.
+     */
+    public Response execute() {
+        return new ExecutorService().execute(this);
+    }
+
     @Override
     public String toString() {
         return "Request{" +
-            "target='" + target + '\'' +
-            ", action=" + action +
-            ", body='" + body + '\'' +
-            ", parameters=" + parameters +
-            ", headers=" + headers +
-            ", options=" + options +
-            '}';
+                "target='" + target + '\'' +
+                ", action=" + action +
+                ", body='" + body + '\'' +
+                ", parameters=" + parameters +
+                ", headers=" + headers +
+                ", options=" + options +
+                '}';
     }
 
     public static final class Creator {
@@ -120,16 +123,9 @@ public final class Request {
          * Parameter's map is instantiated in case it's null.
          * Parameter's map contains query parameters, therefore parameters, that has null or empty {@param name} are
          * ignored.
-         * <p>
-         * Use cases:
-         * - Given {@param name} == null, parameter is ignored.
-         * - Given {@param name} == "", parameter is ignored.
-         * - Given {@param name} == " ", parameter is ignored.
-         * - Given non - empty {@param name}, parameter is inserted into {@link Creator#parameters} map.
          *
-         * @param name - parameter's to be inserted, name (key).
+         * @param name  - parameter's to be inserted, name (key).
          * @param value - parameter's to be inserted, value.
-         *
          * @return instance of {@link Creator}.
          */
         public Creator parameter(String name, String value) {
@@ -152,13 +148,9 @@ public final class Request {
         /**
          * Puts header in header's map.
          * Header's map is instantiated in case it's null.
-         * <p>
-         * User cases:
-         * - Given {@param name} and {@param value}, header is inserted into {@link Creator#headers} map.
          *
-         * @param name - header's to be inserted, name (key),
+         * @param name  - header's to be inserted, name (key),
          * @param value - header's to be inseted, value.
-         *
          * @return instance of {@link Creator}.
          */
         public Creator header(String name, String value) {
@@ -179,9 +171,8 @@ public final class Request {
          * Creates {@link Request}.
          *
          * @return created and ready - to - execute {@link Request}.
-         *
          * @throws RequestCreationException in case {@link Creator#target} is empty or does not contain
-         * neither http://, nor https:// protocol.
+         *                                  neither http://, nor https:// protocol.
          * @throws RequestCreationException in case {@link Creator#action} is null.
          */
         public Request create() {

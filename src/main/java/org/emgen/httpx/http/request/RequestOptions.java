@@ -1,4 +1,4 @@
-package org.emgen.http.request;
+package org.emgen.httpx.http.request;
 
 /**
  * @since 1.0.0
@@ -24,9 +24,9 @@ public final class RequestOptions {
     @Override
     public String toString() {
         return "RequestOptions{" +
-            "timeout=" + timeout +
-            ", proxySettings=" + proxySettings +
-            '}';
+                "timeout=" + timeout +
+                ", proxySettings=" + proxySettings +
+                '}';
     }
 
     public final static class Creator {

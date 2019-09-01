@@ -1,6 +1,6 @@
-package org.emgen.http.response;
+package org.emgen.httpx.http.response;
 
-import org.emgen.extensions.StringExtensions;
+import org.emgen.httpx.extensions.StringExtensions;
 
 import java.net.HttpCookie;
 import java.util.HashMap;
@@ -19,11 +19,11 @@ public final class Response {
     private final long duration;
 
     public Response(
-        final int code,
-        final String message,
-        final String body,
-        final Map<String, List<String>> headers,
-        final long duration
+            final int code,
+            final String message,
+            final String body,
+            final Map<String, List<String>> headers,
+            final long duration
     ) {
         this.code = code;
         this.message = message;
@@ -90,11 +90,11 @@ public final class Response {
     @Override
     public String toString() {
         return "Response{" +
-            "code=" + code +
-            ", message='" + message + '\'' +
-            ", body='" + body + '\'' +
-            ", headers=" + headers +
-            ", duration=" + duration +
-            '}';
+                "code=" + code +
+                ", message='" + message + '\'' +
+                ", body='" + body + '\'' +
+                ", headers=" + headers +
+                ", duration=" + duration +
+                '}';
     }
 }
