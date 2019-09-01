@@ -1,6 +1,6 @@
-package org.emgen.http.request
+package org.emgen.httpx.http.request
 
-import org.emgen.http.exceptions.RequestCreationException
+import org.emgen.httpx.http.exceptions.RequestCreationException
 import spock.lang.Specification
 
 class RequestSpec extends Specification {

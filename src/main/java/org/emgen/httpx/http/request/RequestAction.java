@@ -1,4 +1,4 @@
-package org.emgen.http.request;
+package org.emgen.httpx.http.request;
 
 /**
  * @since 1.0.0

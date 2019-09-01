@@ -1,4 +1,4 @@
-package org.emgen.http.exceptions;
+package org.emgen.httpx.http.exceptions;
 
 /**
  * @since 1.0.0

@@ -1,4 +1,4 @@
-package org.emgen.http.request;
+package org.emgen.httpx.http.request;
 
 /**
  * @since 1.0.0
@@ -24,8 +24,8 @@ public final class ProxySettings {
     @Override
     public String toString() {
         return "ProxySettings{" +
-            "target='" + target + '\'' +
-            ", port=" + port +
-            '}';
+                "target='" + target + '\'' +
+                ", port=" + port +
+                '}';
     }
 }
