@@ -2,6 +2,7 @@ package org.emgen.httpx.extensions;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -24,6 +25,10 @@ public final class URLEncodingExtensions {
      * @return encoded {@param string}, using {@param charset}.
      */
     public static String encode(String string, String charset) {
+        if (string == null) {
+            return null;
+        }
+
         try {
             return URLEncoder.encode(string, StringExtensions.isEmpty(charset) ? DEFAULT_CHARSET : charset);
         } catch (Exception e) {
@@ -50,11 +55,21 @@ public final class URLEncodingExtensions {
      * @return decoded {@param string}, using {@param charset}.
      */
     public static String decode(String string, String charset) {
-        try {
-            return URLDecoder.decode(string, StringExtensions.isEmpty(charset) ? DEFAULT_CHARSET : charset);
-        } catch (Exception e) {
-            return string;
+        if (string == null) {
+            return null;
         }
+
+        String cs = StringExtensions.isEmpty(charset) ? DEFAULT_CHARSET : charset;
+
+        if (Charset.isSupported(cs)) {
+            try {
+                return URLDecoder.decode(string, cs);
+            } catch (Exception e) {
+                // ignore
+            }
+        }
+
+        return string;
     }
 
     /**

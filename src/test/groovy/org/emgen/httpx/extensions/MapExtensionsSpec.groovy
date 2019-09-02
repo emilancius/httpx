@@ -5,6 +5,14 @@ import spock.lang.Specification
 
 class MapExtensionsSpec extends Specification {
 
+    void "MapExtensions.class cannot be instantiated and throws InstantiationError"() {
+        when:
+        MapExtensions.newInstance()
+
+        then:
+        thrown(InstantiationError)
+    }
+
     void "Given no map, function isEmpty() returns true"() {
         expect:
         MapExtensions.isEmpty(null)

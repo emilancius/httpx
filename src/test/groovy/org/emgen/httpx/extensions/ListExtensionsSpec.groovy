@@ -4,6 +4,14 @@ import spock.lang.Specification
 
 class ListExtensionsSpec extends Specification {
 
+    void "ListExtensions.class cannot be instantiated and throws InstantiationError"() {
+        when:
+        ListExtensions.newInstance()
+
+        then:
+        thrown(InstantiationError)
+    }
+
     void "Given no list, function isEmpty() returns true"() {
         expect:
         ListExtensions.isEmpty(null)

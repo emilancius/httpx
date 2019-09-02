@@ -4,6 +4,14 @@ import spock.lang.Specification
 
 class StringExtensionsSpec extends Specification {
 
+    void "StringExtensions.class cannot be instantiated and throws InstantiationError"() {
+        when:
+        StringExtensions.newInstance()
+
+        then:
+        thrown(InstantiationError)
+    }
+
     void "Given no 'string' parameter, function startsAsAny() returns false"() {
         expect:
         !StringExtensions.startsAsAny(null)
