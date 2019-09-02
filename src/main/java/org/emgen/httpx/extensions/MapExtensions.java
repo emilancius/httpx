@@ -35,7 +35,7 @@ public final class MapExtensions {
      * @param <V>       {@link Map}'s value type.
      * @return Updated {@link Map} by key's {@param predicate}.
      */
-    public static <K, V> Map<K, V> removeByKeyPredicate(Map<K, V> map, Predicate<K> predicate) {
+    public static <K, V> Map<K, V> removeByPredicate(Map<K, V> map, Predicate<K> predicate) {
         Prerequisites.exists(map);
         Prerequisites.exists(predicate);
 

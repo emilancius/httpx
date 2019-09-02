@@ -37,7 +37,7 @@ public final class QueryParameters {
         }
 
         return QUERY_STRING_PREFIX + MapExtensions
-                .removeByKeyPredicate(parameters, StringExtensions::isEmpty)
+                .removeByPredicate(parameters, StringExtensions::isEmpty)
                 .entrySet()
                 .stream()
                 .map(entry -> entry.getValue()
